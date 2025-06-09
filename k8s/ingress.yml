@@ -6,14 +6,18 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
 spec:
+  tls:
+    - hosts:
+        - test.to
+      secretName: demo-tls
   rules:
-  - host: test
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: notes-service
-            port:
-              number: 8000
+    - host: test.to
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: notes-service
+                port:
+                  number: 8000
